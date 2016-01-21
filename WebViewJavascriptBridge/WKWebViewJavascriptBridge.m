@@ -148,6 +148,12 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
     }
 }
 
+-(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
+    __strong typeof(_webViewDelegate) strongDelegate = _webViewDelegate;
+    if (strongDelegate && [strongDelegate respondsToSelector:@selector(webView:didFailProvisionalNavigation:withError:)]) {
+        [strongDelegate webView:webView didFailProvisionalNavigation:navigation withError:error];
+    }
+}
 
 - (void)webView:(WKWebView *)webView
 didFailNavigation:(WKNavigation *)navigation
