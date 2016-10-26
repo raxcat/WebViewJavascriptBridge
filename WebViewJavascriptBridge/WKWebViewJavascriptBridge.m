@@ -149,6 +149,10 @@ decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 }
 
 -(void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error{
+    if (webView != _webView) { return; }
+    
+    _base.numRequestsLoading--;
+    
     __strong typeof(_webViewDelegate) strongDelegate = _webViewDelegate;
     if (strongDelegate && [strongDelegate respondsToSelector:@selector(webView:didFailProvisionalNavigation:withError:)]) {
         [strongDelegate webView:webView didFailProvisionalNavigation:navigation withError:error];
