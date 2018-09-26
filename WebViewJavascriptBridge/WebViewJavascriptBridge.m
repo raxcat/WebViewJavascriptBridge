@@ -190,7 +190,7 @@
     
     _numRequestsLoading--;
     
-    if (_numRequestsLoading == 0 && ![[webView stringByEvaluatingJavaScriptFromString:[_base webViewJavascriptCheckCommand]] isEqualToString:@"true"]) {
+    if (/*_numRequestsLoading == 0 &&*/ ![[webView stringByEvaluatingJavaScriptFromString:[_base webViewJavascriptCheckCommand]] isEqualToString:@"true"]) {
         [_base injectJavascriptFile:YES];
     }
     [_base dispatchStartUpMessageQueue];
